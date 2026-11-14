@@ -4,19 +4,19 @@ A branch performance dashboard for an insurance brokerage, built from the same s
 
 ## Contents
 
-- [Project background](#project-background)
-- [The data](#the-data)
-- [KPIs and definitions](#kpis-and-definitions)
-- [Data quality issues and how I handled them](#data-quality-issues-and-how-i-handled-them)
-- [Excel version](#excel-version)
-- [Tableau version](#tableau-version)
-- [MySQL version](#mysql-version)
-- [Results](#results)
-- [Key findings](#key-findings)
-- [Limitations and assumptions](#limitations-and-assumptions)
-- [Challenges and what I learned](#challenges-and-what-i-learned)
-- [Repository structure](#repository-structure)
-- [Author](#author)
+- Project background
+- The data
+- KPIs and definitions
+- Data quality issues and how I handled them
+- Excel version
+- Tableau version
+- MySQL version
+- Results
+- Key findings
+- Limitations and assumptions
+- Challenges and what I learned
+- Repository structure
+
 
 ## Project background
 
@@ -84,7 +84,7 @@ Dashboard components: target vs placed vs invoiced for each income class, six ac
 4. **Build PivotTables and PivotCharts** for each dashboard component.
 5. **Make it interactive** with slicers (Employee and Year) connected to every pivot, and achievement cards driven by `GETPIVOTDATA` with green and red arrows.
 
-![Excel dashboard](Excel/screenshots/dashboard.png)
+![Excel dashboard](Insurance%20Analytics-Excel_Dashboard.png)
 
 ## Tableau version
 
@@ -96,7 +96,7 @@ Dashboard components: target vs placed vs invoiced for each income class, six ac
 4. **Created calculated fields:** Total Target, Placed Achieved, Invoiced, Placed %, Invoice %, arrow and status fields for the cards, Open Opportunities, Open Revenue, Closed Won, Conversion Ratio.
 5. **Built a worksheet for each component,** including the stage funnel (Gantt bars with a negative offset) and the product mix, then assembled them into one dashboard.
 
-![Tableau dashboard](Tableau/screenshots/dashboard.png)
+![Tableau dashboard](Insurance%20Analytics-Tableau_Dashboard.png)
 
 ## MySQL version
 
@@ -108,14 +108,12 @@ Dashboard components: target vs placed vs invoiced for each income class, six ac
 3. **Wrote the KPI queries.** Each table is totalled separately and then lined up by income class, so the figures are never double-counted.
 4. **Added an employee scorecard** (one row per person across all KPIs) and a stored procedure, `sp_kpi_by_class`, that filters the class-level KPIs by employee.
 
-The full script, with the expected result of each query in comments, is in [`MySQL/insurance_analytics.sql`](MySQL/insurance_analytics.sql).
+The full script, with the expected result of each query in comments, is in [`Insurance Analytics.sql`](Insurance%20Analytics.sql).
 
 ```sql
 CALL sp_kpi_by_class(NULL);      -- whole branch
 CALL sp_kpi_by_class('Vinay');   -- one employee
 ```
-
-![MySQL results](MySQL/screenshots/02_kpi_by_income_class.png)
 
 ## Results
 
@@ -161,23 +159,6 @@ Other checkpoints used to validate each tool:
 - **Join design matters.** Linking on employee as well as income class silently drops people with no budget. Totalling each table separately and linking only on the shared key keeps every amount.
 - **Validate across tools.** Agreeing totals across Excel, Tableau and MySQL gave much more confidence than checking any one of them alone.
 
-## Repository structure
 
-```
-Insurance-Analytics/
-├── Excel/
-│   ├── (workbook)
-│   └── screenshots/
-├── Tableau/
-│   ├── (workbook)
-│   └── screenshots/
-├── MySQL/
-│   ├── insurance_analytics.sql
-│   └── screenshots/
-├── PowerBI/            (coming soon)
-└── README.md
-```
-
-## Author
 
 **Satish Palani**
