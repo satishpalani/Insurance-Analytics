@@ -161,4 +161,9 @@ Other checkpoints used to validate each tool:
 
 
 
-**Satish Palani**
+## About Me
+
+**Satish Palani**, Bangalore. HR operations professional moving into data analytics.
+[[LinkedIn](https://www.linkedin.com/in/satish-palani-9816021a3)] | [satish.pkjh@gmail.com]
+
+*Related project: [Adventure Works](https://github.com/satishpalani/Adventure-Works-Sales-Analysis) 
